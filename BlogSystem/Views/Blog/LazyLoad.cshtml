@@ -1,0 +1,18 @@
+﻿@using BlogSystem.Models.Models;
+@model Blog
+@{
+    ViewData["Title"] = "LazyLoad";
+}
+
+<h2>@Model.Title</h2>
+<p>@Model.Content</p>
+
+<h3>Comments:</h3>
+<ul>
+    @foreach (var comment in Model.Comments)
+    {
+        <li>@comment.Content</li>
+    }
+</ul>
+
+

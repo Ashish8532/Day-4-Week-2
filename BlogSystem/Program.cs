@@ -8,7 +8,8 @@ builder.Services.AddControllersWithViews();
 
 // Database Connection String configuration
 var connectionStrings = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(connectionStrings));
+builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
+    connectionStrings, b => b.MigrationsAssembly("BlogSystem.DataAccess")));
 
 var app = builder.Build();
 

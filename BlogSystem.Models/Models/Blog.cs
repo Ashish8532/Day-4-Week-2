@@ -6,6 +6,6 @@
         public string Title { get; set; }
         public string Content { get; set; }
 
-        public ICollection<Comment> Comments { get; }
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

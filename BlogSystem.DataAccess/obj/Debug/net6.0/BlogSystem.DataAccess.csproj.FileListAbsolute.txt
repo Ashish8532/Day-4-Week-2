@@ -1,4 +1,5 @@
 C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\bin\Debug\net6.0\BlogSystem.DataAccess.deps.json
+C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\bin\Debug\net6.0\BlogSystem.DataAccess.runtimeconfig.json
 C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\bin\Debug\net6.0\BlogSystem.DataAccess.dll
 C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\bin\Debug\net6.0\BlogSystem.DataAccess.pdb
 C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\bin\Debug\net6.0\BlogSystem.Models.dll
@@ -12,4 +13,5 @@ C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\obj\Debug\net6.0\
 C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\obj\Debug\net6.0\BlogSystem.DataAccess.dll
 C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\obj\Debug\net6.0\refint\BlogSystem.DataAccess.dll
 C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\obj\Debug\net6.0\BlogSystem.DataAccess.pdb
+C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\obj\Debug\net6.0\BlogSystem.DataAccess.genruntimeconfig.cache
 C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\obj\Debug\net6.0\ref\BlogSystem.DataAccess.dll
