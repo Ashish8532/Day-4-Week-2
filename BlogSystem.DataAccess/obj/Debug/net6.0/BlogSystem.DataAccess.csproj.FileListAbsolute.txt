@@ -1,0 +1,15 @@
+C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\bin\Debug\net6.0\BlogSystem.DataAccess.deps.json
+C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\bin\Debug\net6.0\BlogSystem.DataAccess.dll
+C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\bin\Debug\net6.0\BlogSystem.DataAccess.pdb
+C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\bin\Debug\net6.0\BlogSystem.Models.dll
+C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\bin\Debug\net6.0\BlogSystem.Models.pdb
+C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\obj\Debug\net6.0\BlogSystem.DataAccess.csproj.AssemblyReference.cache
+C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\obj\Debug\net6.0\BlogSystem.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\obj\Debug\net6.0\BlogSystem.DataAccess.AssemblyInfoInputs.cache
+C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\obj\Debug\net6.0\BlogSystem.DataAccess.AssemblyInfo.cs
+C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\obj\Debug\net6.0\BlogSystem.DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\obj\Debug\net6.0\BlogSystem.DataAccess.csproj.CopyComplete
+C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\obj\Debug\net6.0\BlogSystem.DataAccess.dll
+C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\obj\Debug\net6.0\refint\BlogSystem.DataAccess.dll
+C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\obj\Debug\net6.0\BlogSystem.DataAccess.pdb
+C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.DataAccess\obj\Debug\net6.0\ref\BlogSystem.DataAccess.dll
