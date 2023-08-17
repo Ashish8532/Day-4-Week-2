@@ -71,13 +71,13 @@
                         type: 'DELETE',
                         success: function (data) {
                             if (data.success) {
-                                // Product deleted successfully, show success message
-                                Swal.fire("Deleted!", "Product Deleted Successfully!", "success");
+                                // Comment deleted successfully, show success message
+                                Swal.fire("Deleted!", "Comment Deleted Successfully!", "success");
                                 setTimeout(function () {
-                                    window.location.href = '/Product/Index';
+                                    window.location.href = '/Comment/Index';
                                 }, 1500);
                             } else {
-                                // Product deletion failed, show error message
+                                // Comment deletion failed, show error message
                                 Swal.fire("Error!", "@TempData["error"]", "error");
                             }
                         }

@@ -61,6 +61,7 @@ namespace BlogSystem.Controllers
                 // Save changes to the database
                 _context.SaveChanges();
                 // Redirect to the index action after successful update
+                TempData["success"] = "Blog Updated Successfully.";
                 return RedirectToAction("Index");
             }
             catch (DbUpdateConcurrencyException ex)
@@ -85,6 +86,47 @@ namespace BlogSystem.Controllers
                     blog.Version = databaseValues.Version;
                 }
 
+                return View(blog);
+            }
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Blog blog)
+        {
+            using var transaction = _context.Database.BeginTransaction();
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    TempData["error"] = "Invalid Blog Details!";
+                    return View(blog);
+                }
+                // Add the entity in the context and mark it as modified
+                _context.Blogs.Add(blog);
+                // Save changes to the database
+                _context.SaveChanges();
+                TempData["success"] = "Blog Added Successfully.";
+
+                // Commit transaction if all commands succeed, transaction will auto-rollback
+                // when disposed if either commands fails
+                transaction.Commit();
+
+                TempData["success"] = "Blog Created Successfully.";
+                // Redirect to the index action after successful update
+                return RedirectToAction("Index");
+
+            }
+            catch(Exception  ex)
+            {
+                // Handle exception
+                transaction.Rollback();
+
+                TempData["error"] = $"{ex.Message}!";
                 return View(blog);
             }
         }

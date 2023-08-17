@@ -73,13 +73,13 @@
                         type: 'DELETE',
                         success: function (data) {
                             if (data.success) {
-                                // Product deleted successfully, show success message
-                                Swal.fire("Deleted!", "Product Deleted Successfully!", "success");
+                                // Blog deleted successfully, show success message
+                                Swal.fire("Deleted!", "Blog Deleted Successfully!", "success");
                                 setTimeout(function () {
                                     window.location.href = '/Blog/Index';
                                 }, 1500);
                             } else {
-                                // Product deletion failed, show error message
+                                // Blog deletion failed, show error message
                                 Swal.fire("Error!", "@TempData["error"]", "error");
                             }
                         }

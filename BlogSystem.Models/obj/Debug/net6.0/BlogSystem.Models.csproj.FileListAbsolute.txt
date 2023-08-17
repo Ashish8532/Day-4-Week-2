@@ -10,3 +10,15 @@ C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.Models\obj\Debug\net6.0\Blog
 C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.Models\obj\Debug\net6.0\refint\BlogSystem.Models.dll
 C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.Models\obj\Debug\net6.0\BlogSystem.Models.pdb
 C:\Users\admin\source\repos\Day-4-Week-2\BlogSystem.Models\obj\Debug\net6.0\ref\BlogSystem.Models.dll
+C:\Users\ashis\Source\Repos\Ashish8532\Day-4-Week-2\BlogSystem.Models\bin\Debug\net6.0\BlogSystem.Models.deps.json
+C:\Users\ashis\Source\Repos\Ashish8532\Day-4-Week-2\BlogSystem.Models\bin\Debug\net6.0\BlogSystem.Models.dll
+C:\Users\ashis\Source\Repos\Ashish8532\Day-4-Week-2\BlogSystem.Models\bin\Debug\net6.0\BlogSystem.Models.pdb
+C:\Users\ashis\Source\Repos\Ashish8532\Day-4-Week-2\BlogSystem.Models\obj\Debug\net6.0\BlogSystem.Models.csproj.AssemblyReference.cache
+C:\Users\ashis\Source\Repos\Ashish8532\Day-4-Week-2\BlogSystem.Models\obj\Debug\net6.0\BlogSystem.Models.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ashis\Source\Repos\Ashish8532\Day-4-Week-2\BlogSystem.Models\obj\Debug\net6.0\BlogSystem.Models.AssemblyInfoInputs.cache
+C:\Users\ashis\Source\Repos\Ashish8532\Day-4-Week-2\BlogSystem.Models\obj\Debug\net6.0\BlogSystem.Models.AssemblyInfo.cs
+C:\Users\ashis\Source\Repos\Ashish8532\Day-4-Week-2\BlogSystem.Models\obj\Debug\net6.0\BlogSystem.Models.csproj.CoreCompileInputs.cache
+C:\Users\ashis\Source\Repos\Ashish8532\Day-4-Week-2\BlogSystem.Models\obj\Debug\net6.0\BlogSystem.Models.dll
+C:\Users\ashis\Source\Repos\Ashish8532\Day-4-Week-2\BlogSystem.Models\obj\Debug\net6.0\refint\BlogSystem.Models.dll
+C:\Users\ashis\Source\Repos\Ashish8532\Day-4-Week-2\BlogSystem.Models\obj\Debug\net6.0\BlogSystem.Models.pdb
+C:\Users\ashis\Source\Repos\Ashish8532\Day-4-Week-2\BlogSystem.Models\obj\Debug\net6.0\ref\BlogSystem.Models.dll
