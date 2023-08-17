@@ -40,6 +40,9 @@ namespace BlogSystem.DataAccess.Data
                 new Comment { Id = 6, Content = "This is Comment 6.", BlogId = 3 },     
                 new Comment { Id = 7, Content = "This is Comment 7.", BlogId = 3 }    
                 );
+
+            modelBuilder.Entity<Blog>()
+                       .Property(p => p.Version).IsConcurrencyToken();
         }
     }
 }
