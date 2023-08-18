@@ -9,20 +9,26 @@ using System.Security.Policy;
 using System.Xml;
 using System.Diagnostics.Metrics;
 using BlogSystem.DataAccess.Repository.IRepository;
+using System.Reflection.PortableExecutable;
 
 namespace BlogSystem.Controllers
 {
     public class BlogController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IBlogRepository _blogRepository;
         private readonly IUnitOfWork _unitOfWork;
-        public BlogController(ApplicationDbContext context, IUnitOfWork unitOfWork)
+        public BlogController(IUnitOfWork unitOfWork, IBlogRepository blogRepository)
         {
-            _context = context;
             _unitOfWork = unitOfWork;
+            _blogRepository = blogRepository;
         }
 
+        //Response caching reduces the number of requests a client or proxy makes to a web server.
+        //Response caching also reduces the amount of work the web server performs to generate a
+        //response.Response caching is set in headers.
+
         [HttpGet]
+        [ResponseCache(Duration = 300, Location = ResponseCacheLocation.Client)] 
         public async  Task<IActionResult> Index()
         {
             // Load all blogs
@@ -48,6 +54,7 @@ namespace BlogSystem.Controllers
             return View(blogs);
         }
 
+
         [HttpPost]
         public async Task<IActionResult> Edit(Blog blog)
         {
@@ -57,23 +64,43 @@ namespace BlogSystem.Controllers
                 TempData["error"] = "Invalid Blog Details!";
                 return View(blog);
             }
-
             try
             {
                 // Update the entity in the context and mark it as modified
-                await _unitOfWork.Blog.UpdateAsync(blog);
-                
+                await _blogRepository.UpdateAsync(blog);
+
+                // Save changes to the database
+                await _unitOfWork.SaveAsync();
+
                 // Redirect to the index action after successful update
                 TempData["success"] = "Blog Updated Successfully.";
                 return RedirectToAction("Index");
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                // Message from HandleConcurrencyConflict method
-                TempData["error"] = ex.Message;
+                // Handle concurrency conflict
+                // Get the database values of the conflicting entity
+                var entry = ex.Entries.Single().GetDatabaseValues();
+
+                // If the entity was deleted by another user
+                if (entry == null)
+                {
+                    TempData["errro"] = "Unable to save changes. The entity you are trying " +
+                        "to update was deleted by another user.";
+                }
+                else
+                {
+                    // The entity was modified by another user
+                    var databaseValues = (Blog)entry.ToObject();
+                    TempData["error"] = "The blog post was modified by another user.";
+                    // Update the version (or timestamp) to handle the conflict
+                    blog.Version = databaseValues.Version;
+                }
+
                 return View(blog);
             }
         }
+
 
         [HttpGet]
         public IActionResult Create()
@@ -90,17 +117,17 @@ namespace BlogSystem.Controllers
                 return View(blog);
             }
 
-            using var transaction = _context.Database.BeginTransaction();
+            using var transaction = _unitOfWork.BeginTransactionAsync();
             try
             {
                 // Add the entity in the context and mark it as modified
                 await _unitOfWork.Blog.Add(blog);
                 // Save changes to the database
-                await _unitOfWork.Save();
+                await _unitOfWork.SaveAsync();
 
                 // Commit transaction if all commands succeed, transaction will auto-rollback
                 // when disposed if either commands fails
-                transaction.Commit();
+                await _unitOfWork.CommitTransactionAsync();
 
                 TempData["success"] = "Blog Created Successfully.";
                 // Redirect to the index action after successful update
@@ -110,7 +137,7 @@ namespace BlogSystem.Controllers
             catch(Exception  ex)
             {
                 // Handle exception
-                transaction.Rollback();
+                await _unitOfWork.RollbackTransactionAsync();
 
                 TempData["error"] = $"{ex.Message}!";
                 return View(blog);

@@ -9,6 +9,6 @@ namespace BlogSystem.DataAccess.Repository.IRepository
 {
     public interface IBlogRepository : IRepository<Blog>
     {
-        Task UpdateAsync(Blog blog);
+        Task<Blog> UpdateAsync(Blog blog);
     }
 }

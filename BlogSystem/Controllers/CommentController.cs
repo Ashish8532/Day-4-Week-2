@@ -1,25 +1,24 @@
-﻿using BlogSystem.DataAccess.Data;
-using BlogSystem.Models.Models;
+﻿using BlogSystem.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace BlogSystem.Controllers
 {
     public class CommentController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CommentController(ApplicationDbContext context)
+        public CommentController(IUnitOfWork unitOfWork)
         {
-            _context = context;
+            _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public async Task<IActionResult> Index()
         {
-            var comment = _context.Comments.Include(blog => blog.Blog).ToList();
+            var comment = await _unitOfWork.Comment.GetAll();
             return View(comment);
         }
 
-        
+
     }
 }

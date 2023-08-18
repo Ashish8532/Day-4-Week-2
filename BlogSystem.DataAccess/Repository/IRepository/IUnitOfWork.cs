@@ -11,6 +11,10 @@ namespace BlogSystem.DataAccess.Repository.IRepository
         IBlogRepository Blog { get; }
         ICommentRepository Comment { get; }
 
-        Task Save();
+        Task SaveAsync();
+
+        Task BeginTransactionAsync();
+        Task CommitTransactionAsync();
+        Task RollbackTransactionAsync();
     }
 }
