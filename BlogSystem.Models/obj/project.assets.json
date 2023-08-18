@@ -5727,19 +5727,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ashis\\.nuget\\packages\\": {}
+    "C:\\Users\\admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ashis\\Source\\Repos\\Ashish8532\\Day-4-Week-2\\BlogSystem.Models\\BlogSystem.Models.csproj",
+      "projectUniqueName": "C:\\Users\\admin\\Source\\Repos\\Ashish8532\\Day-4-Week-2\\BlogSystem.Models\\BlogSystem.Models.csproj",
       "projectName": "BlogSystem.Models",
-      "projectPath": "C:\\Users\\ashis\\Source\\Repos\\Ashish8532\\Day-4-Week-2\\BlogSystem.Models\\BlogSystem.Models.csproj",
-      "packagesPath": "C:\\Users\\ashis\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ashis\\Source\\Repos\\Ashish8532\\Day-4-Week-2\\BlogSystem.Models\\obj\\",
+      "projectPath": "C:\\Users\\admin\\Source\\Repos\\Ashish8532\\Day-4-Week-2\\BlogSystem.Models\\BlogSystem.Models.csproj",
+      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\admin\\Source\\Repos\\Ashish8532\\Day-4-Week-2\\BlogSystem.Models\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ashis\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5786,7 +5786,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
       }
     }
   }

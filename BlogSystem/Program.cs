@@ -1,4 +1,6 @@
 using BlogSystem.DataAccess.Data;
+using BlogSystem.DataAccess.Repository.IRepository;
+using BlogSystem.DataAccess.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +12,11 @@ builder.Services.AddControllersWithViews();
 var connectionStrings = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
     connectionStrings, b => b.MigrationsAssembly("BlogSystem.DataAccess")));
+
+builder.Services.AddTransient<IBlogRepository, BlogRepository>();
+builder.Services.AddTransient<ICommentRepository, CommentRepository>();
+
+builder.Services.AddTransient<IUnitOfWork, UnitOfWork>();
 
 var app = builder.Build();
 

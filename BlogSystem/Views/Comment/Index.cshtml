@@ -9,20 +9,12 @@
         <div class="col-6">
             <h2 class="fw-bold">Comment List</h2>
         </div>
-        <div class="col-6 text-end">
-            <div>
-                <a asp-controller="Comment" asp-action="Create" class="btn btn-primary">
-                    <i class="bi bi-plus-circle"></i> &nbsp; Add Comment
-                </a>
-            </div>
-        </div>
     </div>
     <table id="myTable" class="table table-bordered table-striped" style="width:100%">
         <thead>
             <tr class="text-center">
                 <th>Content</th>
                 <th>Blog Title</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -31,18 +23,6 @@
                 <tr class="text-center">
                     <td>@obj.Content</td>
                     <td>@obj.Blog.Title</td>
-                    <td>
-                        <div class="w-60 btn-group" role="group">
-                            <a asp-controller="Comment" asp-action="Edit" asp-route-id="@obj.Id"
-                               class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i>&nbsp; Edit</a>
-
-                            <a onclick="Delete('/Comment/Delete/@obj.Id')"
-                               class="btn btn-danger mx-2"><i class="bi bi-trash"></i> Delete</a>
-
-                            <a asp-controller="Comment" asp-action="Details" asp-route-id="@obj.Id"
-                               class="btn btn-secondary mx-2"><i class="bi bi-pencil-square"></i>&nbsp; Details</a>
-                        </div>
-                    </td>
                 </tr>
             }
         </tbody>
@@ -53,38 +33,5 @@
     @{
         <partial name="_ValidationScriptsPartial" />
     }
-    <script>
-        function Delete(url) {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!',
-                type: "success"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajax({
-                        url: url,
-                        type: 'DELETE',
-                        success: function (data) {
-                            if (data.success) {
-                                // Comment deleted successfully, show success message
-                                Swal.fire("Deleted!", "Comment Deleted Successfully!", "success");
-                                setTimeout(function () {
-                                    window.location.href = '/Comment/Index';
-                                }, 1500);
-                            } else {
-                                // Comment deletion failed, show error message
-                                Swal.fire("Error!", "@TempData["error"]", "error");
-                            }
-                        }
-                    })
-                }
-            })
-        }
-    </script>
 }
 

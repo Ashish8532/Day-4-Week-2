@@ -8,29 +8,32 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 using System.Security.Policy;
 using System.Xml;
 using System.Diagnostics.Metrics;
+using BlogSystem.DataAccess.Repository.IRepository;
 
 namespace BlogSystem.Controllers
 {
     public class BlogController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public BlogController(ApplicationDbContext context)
+        private readonly IUnitOfWork _unitOfWork;
+        public BlogController(ApplicationDbContext context, IUnitOfWork unitOfWork)
         {
             _context = context;
+            _unitOfWork = unitOfWork;
         }
 
-        public IActionResult Index()
+        [HttpGet]
+        public async  Task<IActionResult> Index()
         {
             // Load all blogs
-            var blogs = _context.Blogs.ToList();
+            var blogs = await _unitOfWork.Blog.GetAll();
             return View(blogs);
         }
 
-        public IActionResult LazyLoad(int blogId)
+        public async Task<IActionResult> LazyLoad(int blogId)
         {
             // Lazily loading Comments for a blog post
-            var blogs = _context.Blogs.FirstOrDefault(b => b.Id == blogId);
+            var blogs = await _unitOfWork.Blog.GetFirstOrDefault(b => b.Id == blogId);
             if (blogs != null)
             {
                 return View(blogs);
@@ -39,78 +42,61 @@ namespace BlogSystem.Controllers
 
         }
 
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
-            var blogs = _context.Blogs.FirstOrDefault(b => b.Id == id);
+            var blogs = await _unitOfWork.Blog.GetById(id);
             return View(blogs);
         }
 
         [HttpPost]
-        public IActionResult Edit(Blog blog)
+        public async Task<IActionResult> Edit(Blog blog)
         {
+            // Check if the model state is valid (validations)
+            if (!ModelState.IsValid)
+            {
+                TempData["error"] = "Invalid Blog Details!";
+                return View(blog);
+            }
+
             try
             {
-                // Check if the model state is valid (validations)
-                if (!ModelState.IsValid)
-                {
-                    TempData["error"] = "Invalid Blog Details!";
-                    return View(blog);
-                }
                 // Update the entity in the context and mark it as modified
-                _context.Blogs.Update(blog).State = EntityState.Modified;
-                // Save changes to the database
-                _context.SaveChanges();
+                await _unitOfWork.Blog.UpdateAsync(blog);
+                
                 // Redirect to the index action after successful update
                 TempData["success"] = "Blog Updated Successfully.";
                 return RedirectToAction("Index");
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                // Handle concurrency conflict
-
-                // Get the database values of the conflicting entity
-                var entry = ex.Entries.Single().GetDatabaseValues();
-
-                // If the entity was deleted by another user
-                if (entry == null)
-                {
-                    TempData["errro"] = "Unable to save changes. The entity you are trying " +
-                        "to update was deleted by another user.";
-                }
-                else
-                {
-                    // The entity was modified by another user
-                    var databaseValues = (Blog)entry.ToObject();
-                    TempData["error"] = "The blog post was modified by another user.";
-                    // Update the version (or timestamp) to handle the conflict
-                    blog.Version = databaseValues.Version;
-                }
-
+                // Message from HandleConcurrencyConflict method
+                TempData["error"] = ex.Message;
                 return View(blog);
             }
         }
 
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(Blog blog)
+        public async Task<IActionResult> Create(Blog blog)
         {
+            if (!ModelState.IsValid)
+            {
+                TempData["error"] = "Invalid Blog Details!";
+                return View(blog);
+            }
+
             using var transaction = _context.Database.BeginTransaction();
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    TempData["error"] = "Invalid Blog Details!";
-                    return View(blog);
-                }
                 // Add the entity in the context and mark it as modified
-                _context.Blogs.Add(blog);
+                await _unitOfWork.Blog.Add(blog);
                 // Save changes to the database
-                _context.SaveChanges();
-                TempData["success"] = "Blog Added Successfully.";
+                await _unitOfWork.Save();
 
                 // Commit transaction if all commands succeed, transaction will auto-rollback
                 // when disposed if either commands fails
@@ -128,6 +114,22 @@ namespace BlogSystem.Controllers
 
                 TempData["error"] = $"{ex.Message}!";
                 return View(blog);
+            }
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var product = await _unitOfWork.Blog.GetById(id);
+            if (product != null)
+            {
+                await _unitOfWork.Blog.Delete(product);
+                return Json(new { success = true });
+            }
+            else
+            {
+                TempData["error"] = "Product not found.";
+                return View(product);
             }
         }
     }

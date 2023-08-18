@@ -29,8 +29,10 @@
             @foreach (var obj in Model)
             {
                 <tr class="text-center">
-                    <td><a asp-controller="Blog" asp-action="LazyLoad" asp-route-blogId="@obj.Id"
-                    class="text-decoration-none">@obj.Title</a></td>
+                    <td>
+                        <a asp-controller="Blog" asp-action="LazyLoad" asp-route-blogId="@obj.Id"
+                           class="text-decoration-none">@obj.Title &nbsp;<i class="bi bi-caret-right-fill"></i></a>
+                    </td>
                     <td>@obj.Content</td>
                     <td>
                         <div class="w-60 btn-group" role="group">
@@ -39,9 +41,6 @@
 
                             <a onclick="Delete('/Blog/Delete/@obj.Id')"
                                class="btn btn-danger mx-2"><i class="bi bi-trash"></i> Delete</a>
-
-                            <a asp-controller="Blog" asp-action="Details" asp-route-id="@obj.Id"
-                               class="btn btn-secondary mx-2"><i class="bi bi-pencil-square"></i>&nbsp; Details</a>
                         </div>
                     </td>
                 </tr>
